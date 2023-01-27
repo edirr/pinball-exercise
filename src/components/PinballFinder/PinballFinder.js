@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import LocationCard from "./LocationCard/LocationCard";
 import './PinballFinder.css';
 
 function PinballFinder() {
@@ -6,9 +7,9 @@ function PinballFinder() {
     const [detectedCoords, setDetectedCoords] = useState({})
     const [inputCoords, setInputCoords] = useState({
         latitude: '',
-        longitude: '',
+        longitude: ''
     });
-    const [pinballLocations, setPinballLocations] = useState([])
+    const [pinballLocation, setPinballLocation] = useState(null)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -22,7 +23,7 @@ function PinballFinder() {
     const findPinballLocations = (coords) => {
         fetch(`https://pinballmap.com/api/v1/regions/closest_by_lat_lon.json?lat=${coords.latitude}&lon=${coords.longitude}`)
             .then(res => res.json())
-            .then(res => setPinballLocations(res))
+            .then(res => setPinballLocation(res))
     }
 
     const handleChange = (event) => {
@@ -42,24 +43,32 @@ function PinballFinder() {
         findPinballLocations(detectedCoords)
     }
 
-    console.log(pinballLocations)
+    console.log(pinballLocation)
     return (
         <div className="pinball">
-            <h1>PinballFinder</h1>
-            <form onSubmit={handleSubmit}>
+            <h1 className="arcadeHeader">Pinball Finder</h1>
+            <form className="form-container" onSubmit={handleSubmit}>
                 <label>
                     Latitude:
-                    <input type="number" name="latitude" value={inputCoords.latitude} onChange={handleChange} />
+                    <input type="number" name="latitude" required value={inputCoords.latitude} onChange={handleChange} />
                 </label>
                 <br />
                 <label>
                     Longitude:
-                    <input type="number" name="longitude" value={inputCoords.longitude} onChange={handleChange} />
+                    <input type="number" name="longitude" required value={inputCoords.longitude} onChange={handleChange} />
                 </label>
-                <br />
-                <input type="submit" value="Search" />
-                <button onClick={useCurrentLocation}>Near Me</button>
+                <div className="secondaryBtnsContainer">
+                <button className="secondaryBtn" onClick={() => setInputCoords({ latitude: '', longitude: '' })}>Clear Fields</button>
+                <button className="secondaryBtn" onClick={useCurrentLocation}>Near Me</button>
+                </div>
+                <input type="submit" value="Search" className="submit" />
             </form>
+            {pinballLocation && (
+                <>
+                    <h1 className="nearestLocations">Nearest Location</h1>
+                    <LocationCard pinballLocation={pinballLocation} />
+                </>
+            )}
         </div>
     );
 }

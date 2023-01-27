@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.form-container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.secondaryBtnsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.secondaryBtn {
+    width: 49%;
+    background-color: #9C27B0;
+    color: white;
+    padding: 14px 20px;
+    /* margin: 0 5px; */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container .submit:hover {
+    background-color: #45a049;
+}
+
+.pinball {
+    height: 100%;
+    width: 100%;
+}
+
+.nearestLocations {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+}
+
+.arcadeHeader {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 30px;
+}
