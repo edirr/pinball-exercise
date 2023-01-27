@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import LocationCard from "./LocationCard/LocationCard";
 import './PinballFinder.css';
+import LocationCard from '../LocationCard/LocationCard'
 
 function PinballFinder() {
 
@@ -43,7 +43,6 @@ function PinballFinder() {
         findPinballLocations(detectedCoords)
     }
 
-    console.log(pinballLocation)
     return (
         <div className="pinball">
             <h1 className="arcadeHeader">Pinball Finder</h1>
@@ -58,8 +57,8 @@ function PinballFinder() {
                     <input type="number" name="longitude" required value={inputCoords.longitude} onChange={handleChange} />
                 </label>
                 <div className="secondaryBtnsContainer">
-                <button className="secondaryBtn" onClick={() => setInputCoords({ latitude: '', longitude: '' })}>Clear Fields</button>
-                <button className="secondaryBtn" onClick={useCurrentLocation}>Near Me</button>
+                    <button className="secondaryBtn" onClick={() => setInputCoords({ latitude: '', longitude: '' })}>Clear Fields</button>
+                    <button className="secondaryBtn" onClick={useCurrentLocation}>Near Me</button>
                 </div>
                 <input type="submit" value="Search" className="submit" />
             </form>
